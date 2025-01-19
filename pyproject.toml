@@ -1,0 +1,32 @@
+[project]
+name = "maze-solver"
+version = "0.1.0"
+description = ""
+authors = [
+    { name = "wleklinskimateusz", email = "wleklinskimateusz05@gmail.com" },
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.14.1"
+ruff = "^0.9.2"
+pytest = "^8.3.4"
+black = "^24.10.0"
+
+[tool.mypy]
+strict = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_untyped_calls = true
+disallow_any_unimported = true
+disallow_incomplete_defs = true
+
