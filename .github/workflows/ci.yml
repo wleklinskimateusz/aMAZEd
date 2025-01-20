@@ -1,0 +1,37 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.13.1"]
+        poetry-version: ["latest"]
+        os: [ubuntu-22.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run image
+        uses: abatilo/actions-poetry@v3
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
+      - name: Install Dependencies
+        run: poetry sync
+      - name: Linter
+        run: poetry run ruff check
+      - name: Formatter
+        run: poetry run ruff format
+      - name: Test
+        run: poetry run pytest --cov --cov-fail-under=100
+      - name: Build
+        run: poetry build
