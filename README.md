@@ -59,6 +59,13 @@ poetry run ruff format .
 ```
 If you install a recommended VSCode extension you should have your files formatted automatically on save.
 
+## Running type checker
+
+```bash
+poetry run mypy .
+```
+If you install a recommended VSCode extension you should have your files checked automatically on save.
+
 ## Running Tests
 
 We use **pytest** for unit testing. Run tests using:
@@ -78,7 +85,6 @@ poetry run pytest --cov --cov-fail-under=100
 
 - Poetry Documentation: [https://python-poetry.org/docs/](https://python-poetry.org/docs/)
 - Python Documentation: [https://docs.python.org/3/](https://docs.python.org/3/)
-
----
+- https://mypy-lang.org/
 
 
