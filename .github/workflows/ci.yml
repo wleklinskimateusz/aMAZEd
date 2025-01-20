@@ -29,6 +29,8 @@ jobs:
         run: poetry sync
       - name: Linter
         run: poetry run ruff check
+      - name: Type Checker
+        run: poetry run mypy .
       - name: Formatter
         run: poetry run ruff format
       - name: Test
