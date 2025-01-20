@@ -1,7 +1,7 @@
 from maze_solver.adder import adder
 
 
-def main() -> None:
+def main():
     adder(1, 2)
 
 
