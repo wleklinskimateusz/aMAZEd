@@ -27,3 +27,5 @@ jobs:
         run: poetry run ruff format
       - name: Test
         run: poetry run pytest --cov --cov-fail-under=100
+      - name: Build
+        run: poetry build
