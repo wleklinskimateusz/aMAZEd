@@ -17,8 +17,8 @@ Ensure you have the following installed on your system:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/yourproject.git
-    cd yourproject
+    git clone https://github.com/wleklinskimateusz/aMAZEd
+    cd aMAZEd
     ```
 
 2. **Install dependencies:**
@@ -40,24 +40,6 @@ poetry run python src/maze_solver/main.py
 ```
 
 ## Code Formatting and Linting
-
-We use the following tools to maintain code quality:
-
-- **Black** (code formatter)
-- **Ruff** (linter and formatter)
-
-### Running Black
-
-```bash
-poetry run black .
-```
-
-### Checking for Black formatting issues
-
-```bash
-poetry run black --check .
-```
-
 ### Running Ruff (linting)
 
 ```bash
@@ -69,6 +51,13 @@ poetry run ruff check .
 ```bash
 poetry run ruff check . --fix
 ```
+
+## Running ruff (formatting)
+
+```bash
+poetry run ruff format .
+```
+If you install a recommended VSCode extension you should have your files formatted automatically on save.
 
 ## Running Tests
 
