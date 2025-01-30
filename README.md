@@ -7,7 +7,7 @@ Welcome to the project! This guide will walk you through setting up the developm
 Ensure you have the following installed on your system:
 
 - **Python** (Recommended version: 3.12 or later)
-  - Install Pyenv to manage multiple Python versions: https://github.com/pyenv/pyenv
+  - Install Pyenv to manage multiple Python versions: https://github.com/pyenv/pyenv for windows you have to you pyenv-win
   - Install Python using Pyenv: `pyenv install 3.13.1`
   - run `pyenv local 3.13.1` to set the Python version for this repository
 - **Poetry** (Dependency and virtual environment manager)
