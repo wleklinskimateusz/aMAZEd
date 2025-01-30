@@ -1,8 +1,5 @@
-from maze_solver.adder import adder
-
-
 def main() -> None:
-    adder(1, 2)
+    pass
 
 
 if __name__ == "__main__":
