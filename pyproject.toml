@@ -11,7 +11,7 @@ requires-python = ">=3.12"
 dependencies = []
 
 [tool.poetry]
-packages = [{ include = "maze_solver", from = "src" }]
+packages = [{ include = "generator", from = "src" }]
 
 
 [tool.poetry.group.dev.dependencies]
@@ -28,4 +28,3 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.mypy]
 strict = true
-

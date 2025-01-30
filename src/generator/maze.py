@@ -4,9 +4,7 @@ from collections import defaultdict
 class Maze:
     """A class that represents a maze as a graph."""
 
-    def __init__(self, width: int, height: int):
-        self.width = width
-        self.height = height
+    def __init__(self) -> None:
         self.graph: defaultdict[tuple[int, int], set[tuple[int, int]]] = defaultdict(
             set
         )
