@@ -36,7 +36,7 @@ Ensure you have the following installed on your system:
 After setting up the environment, you can run the project by executing:
 
 ```bash
-poetry run python src/maze_solver/main.py
+poetry run python src/main.py
 ```
 
 ## Code Formatting and Linting
