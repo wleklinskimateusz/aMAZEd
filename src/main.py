@@ -19,6 +19,8 @@ def main() -> None:
 
     print("[INFO] All connections for (0, 2) node: ", maze.get_connections((0, 2)))
 
+    print("Size of the maze: ", maze.size())
+
 
 if __name__ == "__main__":
     main()
