@@ -8,6 +8,8 @@ class Grid:
         # creating grid
         rows, cols = input.size()
         self.grid = [[0 for i in range(cols)] for j in range(rows)]
+        if rows == 0 or cols == 0:
+            return
         for k in input.graph.keys():
             connections = input.get_connections(k)
             if len(connections) == 0:

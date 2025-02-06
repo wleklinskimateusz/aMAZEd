@@ -35,6 +35,8 @@ class Maze:
     def size(self) -> tuple[int, int]:
         """Returns tuple of maze dimensions (rows, columns)"""
         templist = list(self.graph.keys())
+        if len(templist) == 0:
+            return 0, 0
         return max(templist, key=itemgetter(0))[0] + 1, max(
             templist, key=itemgetter(1)
         )[1] + 1
