@@ -45,7 +45,7 @@ class Grid:
             14: "╦",
             15: "╬",
         }
-        gridcopy = self.grid
+        gridcopy = self.grid[:]
         gridcopy.reverse()
         for row in gridcopy:
             for space in row:
