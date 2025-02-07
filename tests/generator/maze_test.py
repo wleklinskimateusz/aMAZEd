@@ -56,7 +56,7 @@ def test_grid_creation() -> None:
     assert grid.grid == []
 
 
-def test_crude_grid_drawing(capfd: pytest.FixtureRequest) -> None:
+def test_crude_grid_drawing(capfd: pytest.CaptureFixture[str]) -> None:
     maze = Maze()
     maze.add_connection((0, 0), (0, 1))
     maze.add_connection((0, 1), (0, 2))
