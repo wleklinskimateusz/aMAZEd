@@ -12,21 +12,20 @@ class Grid:
             return
         for k in input.graph.keys():
             connections = input.get_connections(k)
-            if len(connections) == 0:
-                continue
-            for c in connections:
-                # up    = 2^0
-                if c[0] > k[0]:
-                    self.grid[k[0]][k[1]] += 1
-                # right = 2^1
-                elif c[1] > k[1]:
-                    self.grid[k[0]][k[1]] += 2
-                # down  = 2^2
-                elif c[0] < k[0]:
-                    self.grid[k[0]][k[1]] += 4
-                # left = 2^3
-                elif c[1] < k[1]:
-                    self.grid[k[0]][k[1]] += 8
+            if len(connections) != 0:
+                for c in connections:
+                    # up    = 2^0
+                    if c[0] > k[0]:
+                        self.grid[k[0]][k[1]] += 1
+                    # right = 2^1
+                    elif c[1] > k[1]:
+                        self.grid[k[0]][k[1]] += 2
+                    # down  = 2^2
+                    elif c[0] < k[0]:
+                        self.grid[k[0]][k[1]] += 4
+                    # left = 2^3
+                    elif c[1] < k[1]:
+                        self.grid[k[0]][k[1]] += 8
 
     def __debug_print__(self) -> None:
         tempdict = {
