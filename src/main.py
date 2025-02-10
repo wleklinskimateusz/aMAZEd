@@ -1,3 +1,4 @@
+from generator.grid import Grid
 from generator.maze import Maze
 
 
@@ -18,6 +19,12 @@ def main() -> None:
     print("[INFO] Connection added: (0, 2) ↔ (0, 3)")
 
     print("[INFO] All connections for (0, 2) node: ", maze.get_connections((0, 2)))
+
+    print("Size of the maze: ", maze.size())
+
+    grid = Grid(maze)
+    print("Crude maze representation:")
+    grid.__debug_print__()
 
 
 if __name__ == "__main__":

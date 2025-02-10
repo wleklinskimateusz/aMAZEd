@@ -1,5 +1,6 @@
 import pytest
 
+from generator.grid import Grid
 from generator.maze import Maze
 
 
@@ -37,3 +38,31 @@ def test_keep_adding_connections() -> None:
     node = (0, 3)
     new_connection = next(iter(maze.get_connections(node)))
     assert new_connection == (0, 2)
+
+
+def test_size_check() -> None:
+    maze = Maze()
+    maze.add_connection((0, 0), (0, 1))
+    maze.add_connection((0, 1), (0, 2))
+    maze.add_connection((0, 2), (0, 3))
+    assert maze.size() == (1, 4)
+    maze.add_connection((0, 1), (1, 1))
+    assert maze.size() == (2, 4)
+
+
+def test_grid_creation() -> None:
+    maze = Maze()
+    grid = Grid(maze)
+    assert grid.grid == []
+
+
+def test_crude_grid_drawing(capfd: pytest.CaptureFixture[str]) -> None:
+    maze = Maze()
+    maze.add_connection((0, 0), (0, 1))
+    maze.add_connection((0, 1), (0, 2))
+    maze.add_connection((0, 2), (0, 3))
+    maze.add_connection((0, 1), (1, 1))
+    grid = Grid(maze)
+    grid.__debug_print__()
+    out, err = capfd.readouterr()
+    assert out == "█╥██\n╞╩═╡\n"

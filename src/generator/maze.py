@@ -1,4 +1,5 @@
 from collections import defaultdict
+from operator import itemgetter
 
 
 class Maze:
@@ -30,3 +31,12 @@ class Maze:
     def get_connections(self, cell: tuple[int, int]) -> set[tuple[int, int]]:
         """Returns all connected neighbors."""
         return self.graph[cell]
+
+    def size(self) -> tuple[int, int]:
+        """Returns tuple of maze dimensions (rows, columns)"""
+        templist = list(self.graph.keys())
+        if len(templist) == 0:
+            return 0, 0
+        return max(templist, key=itemgetter(0))[0] + 1, max(
+            templist, key=itemgetter(1)
+        )[1] + 1
