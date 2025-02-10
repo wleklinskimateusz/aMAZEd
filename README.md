@@ -77,7 +77,7 @@ poetry run pytest
 To run tests with coverage:
 
 ```bash
-poetry run pytest --cov --cov-fail-under=100
+poetry run pytest --cov --cov-report=term-missing --cov-fail-under=100
 ```
 
 
