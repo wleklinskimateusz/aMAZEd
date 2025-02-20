@@ -1,5 +1,6 @@
 import pytest
 
+from generator.generators import generator_Adam
 from generator.grid import Grid
 from generator.maze import Maze
 
@@ -66,3 +67,25 @@ def test_crude_grid_drawing(capfd: pytest.CaptureFixture[str]) -> None:
     grid.__debug_print__()
     out, err = capfd.readouterr()
     assert out == "█╥██\n╞╩═╡\n"
+
+
+# checks if all area is filled
+# and solution is found (TODO: implement pathfinding, possibly from a package?)
+def test_generator_Adam(capfd: pytest.CaptureFixture[str]) -> None:
+    maze = generator_Adam(10, 10, (0, 0), (9, 9), stop_coeff=100)
+    grid = Grid(maze)
+    grid.__debug_print__()
+    out, err = capfd.readouterr()
+    assert out.find("█") == -1
+
+
+# checks if upon dead end a new solution can be found
+# TODO: make random.choices() in generator cause the path to curl on the first try
+# so that it would be forced to check for that
+# uses the fact that if properly generated,fulfillment is already tested
+def test_generator_Adam_dead_end_solution(capfd: pytest.CaptureFixture[str]) -> None:
+    maze = generator_Adam(2, 5, (0, 0), (4, 1), elsewhere_coeff=100)
+    grid = Grid(maze)
+    grid.__debug_print__()
+    out, err = capfd.readouterr()
+    assert out.find("█") == -1
