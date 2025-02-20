@@ -6,11 +6,21 @@ import pytest
 
 from generator.generators import generator_Adam
 from generator.grid import Grid
+from generator.maze import Maze
 
 
 # checks if all area is filled
 # and solution is found (TODO: implement pathfinding, possibly from a package?)
 def test_generator_Adam(capfd: pytest.CaptureFixture[str]) -> None:
+    maze = Maze()
+    # test if it catches an improperly set start/end
+    with pytest.raises(ValueError):
+        maze = generator_Adam(10, 10, (-2, 3), (5, 7), stop_coeff=100)
+    assert maze.get_connections((0, 0)) == set()
+    with pytest.raises(ValueError):
+        maze = generator_Adam(10, 10, (2, 3), (5, 11), stop_coeff=100)
+    assert maze.get_connections((0, 0)) == set()
+    # test if properly started maze is fully filled
     maze = generator_Adam(10, 10, (2, 3), (5, 7), stop_coeff=100)
     grid = Grid(maze)
     grid.__debug_print__()

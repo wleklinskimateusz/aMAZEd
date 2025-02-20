@@ -21,6 +21,12 @@ def generator_Adam(
     #     stop_coeff = 0.2  # when set too high, a nigh-infinite loop is possible
     #     turn_coeff = 1.0
 
+    # check if start and end are inside the maze
+    if start[0] < 0 or start[0] >= width or start[1] < 0 or start[1] >= height:
+        raise ValueError("Invalid start position; outside the maze")
+    if end[0] < 0 or end[0] >= width or end[1] < 0 or end[1] >= height:
+        raise ValueError("Invalid end position; outside the maze")
+
     # function for adding and subtracting tuples
     def add(t1: tuple[int, int], t2: tuple[int, int]) -> tuple[int, int]:
         return t1[0] + t2[0], t1[1] + t2[1]
