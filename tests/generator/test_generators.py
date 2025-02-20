@@ -11,7 +11,7 @@ from generator.grid import Grid
 # checks if all area is filled
 # and solution is found (TODO: implement pathfinding, possibly from a package?)
 def test_generator_Adam(capfd: pytest.CaptureFixture[str]) -> None:
-    maze = generator_Adam(10, 10, (0, 0), (9, 9), stop_coeff=100)
+    maze = generator_Adam(10, 10, (2, 3), (5, 7), stop_coeff=100)
     grid = Grid(maze)
     grid.__debug_print__()
     out, err = capfd.readouterr()
@@ -68,7 +68,7 @@ def test_generator_Adam_dead_end_solution(capfd: pytest.CaptureFixture[str]) -> 
         "random.choices",
         side_effect=lambda *args: mock_random_choices(*args),
     ):
-        maze = generator_Adam(2, 5, (0, 0), (4, 1))
+        maze = generator_Adam(5, 2, (0, 0), (4, 1), towards_coeff=100)
         grid = Grid(maze)
         grid.__debug_print__()
         out, err = capfd.readouterr()

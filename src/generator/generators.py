@@ -44,7 +44,7 @@ def generator_Adam(
             # and then adds option with a weight dependant if its toward or not the end
             # right
             if (
-                solution[-1][0] + 1 <= end[0]
+                solution[-1][0] + 1 < width
                 and len(internal_maze.get_connections(add(solution[-1], (1, 0)))) == 0
             ):
                 weights += [
@@ -64,7 +64,7 @@ def generator_Adam(
                 connections += [add(solution[-1], (-1, 0))]
             # up
             if (
-                solution[-1][1] + 1 <= end[1]
+                solution[-1][1] + 1 < height
                 and len(internal_maze.get_connections(add(solution[-1], (0, 1)))) == 0
             ):
                 weights += [
@@ -108,7 +108,7 @@ def generator_Adam(
             # and then adds option with a weight dependant if its toward or not the end
             # right
             if (
-                used_places[i][0] + 1 <= end[0]
+                used_places[i][0] + 1 < width
                 and len(internal_maze.get_connections(add(used_places[i], (1, 0)))) == 0
             ):
                 weights += [1.0]
@@ -123,7 +123,7 @@ def generator_Adam(
                 connections += [add(used_places[i], (-1, 0))]
             # up
             if (
-                used_places[i][1] + 1 <= end[1]
+                used_places[i][1] + 1 < height
                 and len(internal_maze.get_connections(add(used_places[i], (0, 1)))) == 0
             ):
                 weights += [1.0]
