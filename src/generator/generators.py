@@ -7,9 +7,12 @@ def generator_Adam(
     width: int, height: int, start: tuple[int, int], end: tuple[int, int]
 ) -> Maze:
     # coefficients
+    # solution
     towards_coeff = 2.0
     elsewhere_coeff = 1.0
-    stop_coeff = 0.1
+    # branching
+    stop_coeff = 10000
+    turn_coeff = 1.0
 
     # function for adding and subtracting tuples
     def add(t1: tuple[int, int], t2: tuple[int, int]) -> tuple[int, int]:
@@ -127,6 +130,20 @@ def generator_Adam(
             ):
                 weights += [1.0]
                 connections += [add(used_places[i], (0, -1))]
+            # when next connection would make a straight line, it favours turning
+            # by making perpendicular weights bigger
+            temp_connections = list(internal_maze.get_connections(used_places[i]))
+            if len(temp_connections) == 1 and len(connections) != 1:
+                # up/down movement adds weight to right/left
+                if temp_connections[0][1] - used_places[i][1] == 0:
+                    for j in range(len(connections)):
+                        if connections[j][0] - used_places[i][0] == 0:
+                            weights[j] += turn_coeff
+                # right/left movement adds weight to up/down
+                if temp_connections[0][0] - used_places[i][0] == 0:
+                    for j in range(len(connections)):
+                        if connections[j][1] - used_places[i][1] == 0:
+                            weights[j] += turn_coeff
             # stop option
             weights += [stop_coeff]
             connections += [(-1, -1)]
