@@ -11,7 +11,7 @@ def generator_Adam(
     towards_coeff = 2.0
     elsewhere_coeff = 1.0
     # branching
-    stop_coeff = 10000
+    stop_coeff = 0.2  # when set too high, a nigh-infinite loop is possible
     turn_coeff = 1.0
 
     # function for adding and subtracting tuples
@@ -90,7 +90,6 @@ def generator_Adam(
     i = -1
     while i < len(used_places) - 1:
         i += 1
-        print(str(i) + ", " + str(len(used_places)))
         # checks if can branch from this tile
         if len(internal_maze.get_connections(used_places[i])) == 4:
             continue
@@ -154,8 +153,9 @@ def generator_Adam(
             used_places += [next_tile]
             internal_maze.add_connection(used_places[i], next_tile)
         # checks if whole labirynth has been filled
-        if len(used_places) == width * height:
-            break
+        # if not, starts from the beginning again
+        if i == len(used_places) - 1 and len(used_places) != width * height:
+            i = -1
     # end of branching loop
 
     return internal_maze

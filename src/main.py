@@ -26,6 +26,7 @@ def main() -> None:
     grid = Grid(maze)
     print("Crude maze representation:")
     grid.__debug_print__()
+    print("")
 
     generated_maze = generator_Adam(10, 10, (0, 0), (9, 9))
     generated_grid = Grid(generated_maze)
