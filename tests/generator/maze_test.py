@@ -84,7 +84,7 @@ def test_generator_Adam(capfd: pytest.CaptureFixture[str]) -> None:
 # so that it would be forced to check for that
 # uses the fact that if properly generated,fulfillment is already tested
 def test_generator_Adam_dead_end_solution(capfd: pytest.CaptureFixture[str]) -> None:
-    maze = generator_Adam(2, 5, (0, 0), (4, 1), elsewhere_coeff=100)
+    maze = generator_Adam(2, 5, (0, 0), (4, 1), elsewhere_coeff=100, turn_coeff=100)
     grid = Grid(maze)
     grid.__debug_print__()
     out, err = capfd.readouterr()
