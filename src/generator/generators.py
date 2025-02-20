@@ -4,15 +4,22 @@ from generator.maze import Maze
 
 
 def generator_Adam(
-    width: int, height: int, start: tuple[int, int], end: tuple[int, int]
+    width: int,
+    height: int,
+    start: tuple[int, int],
+    end: tuple[int, int],
+    towards_coeff: float = 2.0,
+    elsewhere_coeff: float = 1.0,
+    stop_coeff: float = 0.2,
+    turn_coeff: float = 1.0,
 ) -> Maze:
-    # coefficients
-    # solution
-    towards_coeff = 2.0
-    elsewhere_coeff = 1.0
-    # branching
-    stop_coeff = 0.2  # when set too high, a nigh-infinite loop is possible
-    turn_coeff = 1.0
+    # coefficients:
+    #   solution:
+    #     towards_coeff = 2.0
+    #     elsewhere_coeff = 1.0
+    #   branching:
+    #     stop_coeff = 0.2  # when set too high, a nigh-infinite loop is possible
+    #     turn_coeff = 1.0
 
     # function for adding and subtracting tuples
     def add(t1: tuple[int, int], t2: tuple[int, int]) -> tuple[int, int]:
