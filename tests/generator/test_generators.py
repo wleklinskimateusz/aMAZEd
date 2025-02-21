@@ -52,7 +52,7 @@ def function_containing_random_choice() -> int:
 
 
 # test if i can fake first 10 values
-@patch("random.choices", new=mock_random_choices_trial)
+@patch("random.choices", new=mock_random_choices_trial)  # type: ignore
 def test_random_mocking_advanced() -> None:
     for i in range(10):
         assert function_containing_random_choice() == 0
@@ -76,7 +76,7 @@ def mock_random_choices(*args: Any) -> list[tuple[int, int]]:
 
 
 # checks if upon dead end a new solution can be found
-@patch("random.choices", new=mock_random_choices)
+@patch("random.choices", new=mock_random_choices)  # type: ignore
 def test_generator_Adam_dead_end_solution(capfd: pytest.CaptureFixture[str]) -> None:
     maze = generator_Adam(5, 2, (0, 0), (4, 1), towards_coeff=100)
     grid = Grid(maze)
