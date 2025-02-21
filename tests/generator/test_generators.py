@@ -20,6 +20,9 @@ def test_generator_Adam(capfd: pytest.CaptureFixture[str]) -> None:
     with pytest.raises(ValueError):
         maze = generator_Adam(10, 10, (2, 3), (5, 11), stop_coeff=100)
     assert maze.get_connections((0, 0)) == set()
+    with pytest.raises(ValueError):
+        maze = generator_Adam(10, 10, (2, 3), (2, 3), stop_coeff=100)
+    assert maze.get_connections((0, 0)) == set()
     # test if properly started maze is fully filled
     maze = generator_Adam(10, 10, (2, 3), (5, 7), stop_coeff=100)
     grid = Grid(maze)
