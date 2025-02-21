@@ -8,6 +8,8 @@ class Wilson(Maze):
     maze_size = (10,10)
 
     def __init__(self, maze_size = (10,10)) -> None:
+        if maze_size[0] <2 or maze_size[1] <2:
+            raise ValueError(f"Invalid maze size, must be at least 2x2")
         self.graph: defaultdict[tuple[int, int], set[tuple[int, int]]] = defaultdict(
             set
         )
