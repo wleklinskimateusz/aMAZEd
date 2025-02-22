@@ -3,6 +3,8 @@ from typing import Any
 from unittest.mock import patch
 
 import pytest
+from pathfinding.core.graph import Graph
+from pathfinding.finder.dijkstra import DijkstraFinder
 
 from generator.generators import generator_Adam
 from generator.grid import Grid
@@ -10,25 +12,55 @@ from generator.maze import Maze
 
 
 # checks if all area is filled
-# and solution is found (TODO: implement pathfinding, possibly from a package?)
+# and solution is found
 def test_generator_Adam(capfd: pytest.CaptureFixture[str]) -> None:
     maze = Maze()
+    start = (2, 3)
+    end = (5, 7)
     # test if it catches an improperly set start/end
     with pytest.raises(ValueError):
-        maze = generator_Adam(10, 10, (-2, 3), (5, 7), stop_coeff=100)
+        maze = generator_Adam(10, 10, (-2, 3), end, stop_coeff=100)
     assert maze.get_connections((0, 0)) == set()
     with pytest.raises(ValueError):
-        maze = generator_Adam(10, 10, (2, 3), (5, 11), stop_coeff=100)
+        maze = generator_Adam(10, 10, start, (5, 11), stop_coeff=100)
     assert maze.get_connections((0, 0)) == set()
     with pytest.raises(ValueError):
-        maze = generator_Adam(10, 10, (2, 3), (2, 3), stop_coeff=100)
+        maze = generator_Adam(10, 10, start, start, stop_coeff=100)
     assert maze.get_connections((0, 0)) == set()
     # test if properly started maze is fully filled
-    maze = generator_Adam(10, 10, (2, 3), (5, 7), stop_coeff=100)
+    maze = generator_Adam(10, 10, start, end, stop_coeff=100)
     grid = Grid(maze)
     grid.__debug_print__()
     out, err = capfd.readouterr()
     assert out.find("█") == -1
+    # test if solution exists
+    # two internal fors loop over all tiles and get
+    # [tile_number, neighbour_number, 1 (weight of connection)]
+    # the outer two flatten the list because tiles have different numbers of neighbours
+    # node number for Dijkstra is made in a way of x+width*y everywhere below
+    edges = [
+        x
+        for xs in [
+            [
+                [
+                    node[0] + node[1] * maze.size()[0],
+                    nghbr[0] + nghbr[1] * maze.size()[0],
+                    1,
+                ]
+                for nghbr in nghbrs
+            ]
+            for node, nghbrs in maze.graph.items()
+        ]
+        for x in xs
+    ]
+    graph = Graph(edges=edges)
+    finder = DijkstraFinder()
+    path, runs = finder.find_path(
+        graph.node(start[0] + start[1] * maze.size()[0]),
+        graph.node(end[0] + end[1] * maze.size()[0]),
+        graph,
+    )
+    assert path != []
 
 
 def test_random_mocking_basic() -> None:

@@ -244,6 +244,18 @@ files = [
 ]
 
 [[package]]
+name = "pathfinding"
+version = "1.0.16"
+description = "Path finding algorithms (based on Pathfinding.JS)"
+optional = false
+python-versions = "*"
+groups = ["dev"]
+files = [
+    {file = "pathfinding-1.0.16-py3-none-any.whl", hash = "sha256:e55980c05ba51cc6dbe294f100f6d9eee26eae0cc1635acadd5aa4e6ccce2bae"},
+    {file = "pathfinding-1.0.16.tar.gz", hash = "sha256:dafd208760b5beb3d9ef44dd9412ceb84f28252dd639229fa05b79b687db38cd"},
+]
+
+[[package]]
 name = "pathspec"
 version = "0.12.1"
 description = "Utility library for gitignore style pattern matching of file paths."
@@ -371,4 +383,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "653f53a467777cd37de350b4e24464a0970a2c95927acd3ed8160e7c82ed43a6"
+content-hash = "fbb396a8703d80c83b444eed2a9b400941fba1ecfaa9f4cdf2b8a5b63b46f29c"
