@@ -3,8 +3,11 @@ from typing import Any
 from unittest.mock import patch
 
 import pytest
-from pathfinding.core.graph import Graph
-from pathfinding.finder.dijkstra import DijkstraFinder
+
+# pathfinding has no rigorous type checking
+# so errors need to be supressed
+from pathfinding.core.graph import Graph  # type: ignore
+from pathfinding.finder.dijkstra import DijkstraFinder  # type: ignore
 
 from generator.generators import generator_Adam
 from generator.grid import Grid
