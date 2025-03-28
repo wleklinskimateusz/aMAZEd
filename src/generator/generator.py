@@ -17,7 +17,9 @@ class Generator(ABC):
         """
         self.height = height
         self.width = width
+        self.maze = Maze()
 
     @abstractmethod
-    def generate(self) -> Maze:
+    def generate(self) -> None:
+        """Generate the maze. save it to self.maze"""
         pass
